@@ -15,57 +15,56 @@
             var contract;
             // web3 = new Web3(web3.currentProvider);
             web3 = new Web3(window.ethereum);
-            
 
-                var address = "0x8E6EDeAB1Cdec69Cde0Cf6673EE6DcB95625A5a5";
-                var abi = [
-                    {
-                        "inputs": [],
-                        "stateMutability": "nonpayable",
-                        "type": "constructor"
-                    },
-                    {
-                        "inputs": [
-                            {
-                                "internalType": "int256",
-                                "name": "amt",
-                                "type": "int256"
-                            }
-                        ],
-                        "name": "deposit",
-                        "outputs": [],
-                        "stateMutability": "nonpayable",
-                        "type": "function"
-                    },
-                    {
-                        "inputs": [],
-                        "name": "getBal",
-                        "outputs": [
-                            {
-                                "internalType": "int256",
-                                "name": "",
-                                "type": "int256"
-                            }
-                        ],
-                        "stateMutability": "view",
-                        "type": "function"
-                    },
-                    {
-                        "inputs": [
-                            {
-                                "internalType": "int256",
-                                "name": "amt",
-                                "type": "int256"
-                            }
-                        ],
-                        "name": "withdraw",
-                        "outputs": [],
-                        "stateMutability": "nonpayable",
-                        "type": "function"
-                    }
-                ]
+            var address = "0x8E6EDeAB1Cdec69Cde0Cf6673EE6DcB95625A5a5";
+            var abi = [
+                {
+                    "inputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "int256",
+                            "name": "amt",
+                            "type": "int256"
+                        }
+                    ],
+                    "name": "deposit",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "getBal",
+                    "outputs": [
+                        {
+                            "internalType": "int256",
+                            "name": "",
+                            "type": "int256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "int256",
+                            "name": "amt",
+                            "type": "int256"
+                        }
+                    ],
+                    "name": "withdraw",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                }
+            ]
 
-                contract = new web3.eth.Contract(abi, address);
+            contract = new web3.eth.Contract(abi, address);
 
             $(document).ready(function() {
                 contract.methods.getBal().call().then(function(bal){
@@ -78,9 +77,8 @@
                 amt = parseInt($('#amount').val());
 
                 web3.eth.getAccounts().then((accounts) => {
-                    tmp = accounts;
-                    var acc = tmp[0];
-                    //console.log(acc);
+                    var acc = accounts[0];
+                    console.log(acc);
                     return contract.methods.deposit(amt).send({from : acc});
                 })
                 .then(function(tx){
@@ -95,9 +93,8 @@
                 amt = parseInt($('#amount').val());
 
                 web3.eth.getAccounts().then((accounts) => {
-                    tmp = accounts;
-                    var acc = tmp[0];
-                    //console.log(acc);
+                    var acc = accounts[0];
+                    console.log(acc);
                     return contract.methods.withdraw(amt).send({from : acc});
                 })
                 .then(function(tx){
