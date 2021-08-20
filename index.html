@@ -80,7 +80,7 @@
                 web3.eth.getAccounts().then((accounts) => {
                     var acc = accounts[0];
                     console.log(acc);
-                    return contract.methods.deposit(amt).send({from : '0xA45E2A663357b0ADA2cB88E0Da20fAc1437ec9C8'});
+                    return contract.methods.deposit(amt).send({from : acc});
                 })
                 .then(function(tx){
                     console.log(tx);
@@ -96,7 +96,7 @@
                 web3.eth.getAccounts().then((accounts) => {
                     var acc = accounts[0];
                     console.log(acc);
-                    return contract.methods.withdraw(amt).send({from : '0xA45E2A663357b0ADA2cB88E0Da20fAc1437ec9C8'});
+                    return contract.methods.withdraw(amt).send({from : acc});
                 })
                 .then(function(tx){
                     console.log(tx);
