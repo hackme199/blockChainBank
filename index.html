@@ -13,7 +13,9 @@
 
         <script>
             var contract;
-            web3 = new Web3(web3.currentProvider);
+            // web3 = new Web3(web3.currentProvider);
+            web3 = new Web3(window.ethereum);
+            
 
                 var address = "0x8E6EDeAB1Cdec69Cde0Cf6673EE6DcB95625A5a5";
                 var abi = [
@@ -66,70 +68,12 @@
                 contract = new web3.eth.Contract(abi, address);
 
             $(document).ready(function() {
-                // web3 = new Web3(web3.currentProvider);
-
-                // var address = "0x8E6EDeAB1Cdec69Cde0Cf6673EE6DcB95625A5a5";
-                // var abi = [
-                //     {
-                //         "inputs": [],
-                //         "stateMutability": "nonpayable",
-                //         "type": "constructor"
-                //     },
-                //     {
-                //         "inputs": [
-                //             {
-                //                 "internalType": "int256",
-                //                 "name": "amt",
-                //                 "type": "int256"
-                //             }
-                //         ],
-                //         "name": "deposit",
-                //         "outputs": [],
-                //         "stateMutability": "nonpayable",
-                //         "type": "function"
-                //     },
-                //     {
-                //         "inputs": [],
-                //         "name": "getBal",
-                //         "outputs": [
-                //             {
-                //                 "internalType": "int256",
-                //                 "name": "",
-                //                 "type": "int256"
-                //             }
-                //         ],
-                //         "stateMutability": "view",
-                //         "type": "function"
-                //     },
-                //     {
-                //         "inputs": [
-                //             {
-                //                 "internalType": "int256",
-                //                 "name": "amt",
-                //                 "type": "int256"
-                //             }
-                //         ],
-                //         "name": "withdraw",
-                //         "outputs": [],
-                //         "stateMutability": "nonpayable",
-                //         "type": "function"
-                //     }
-                // ]
-
-                // contract = new web3.eth.Contract(abi, address);
-
                 contract.methods.getBal().call().then(function(bal){
                     $('#balance').html(bal);
                 })
-
             })
 
             $('#deposit').click(function() {
-                // const ethereum = window.ethereum;
-                // const web3 = window.web3;
-                // const web3Instance = new Web3(ethereum);
-                // const enabledWeb3 = ethereum.enable();
-
                 var amt = 0;
                 amt = parseInt($('#amount').val());
 
@@ -147,11 +91,6 @@
             })
 
             $('#withdraw').click(function() {
-                // const ethereum = window.ethereum;
-                // const web3 = window.web3;
-                // const web3Instance = new Web3(ethereum);
-                // const enabledWeb3 = ethereum.enable();
-
                 var amt = 0;
                 amt = parseInt($('#amount').val());
 
